@@ -315,8 +315,4 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnRun(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
     }
-
-    internal class CallbackContext
-    {
-    }
 }
