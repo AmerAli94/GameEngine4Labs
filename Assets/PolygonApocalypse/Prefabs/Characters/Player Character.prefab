@@ -853,7 +853,9 @@ GameObject:
   - component: {fileID: 6634626588068549368}
   - component: {fileID: 7620054377287732315}
   - component: {fileID: 1681434517186798206}
+  - component: {fileID: 3949211579889953992}
   - component: {fileID: 3564970872527060854}
+  - component: {fileID: 794829287}
   m_Layer: 8
   m_Name: Player Character
   m_TagString: Untagged
@@ -952,6 +954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a321d179d9af1a488ebf394dc946852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Crosshairscript: {fileID: 0}
   IsFiring: 0
   IsReloading: 0
   IsJumping: 0
@@ -1001,6 +1004,21 @@ MonoBehaviour:
   m_DefaultActionMap: Third Person
   m_SplitScreenIndex: 0
   m_Camera: {fileID: 0}
+--- !u!114 &3949211579889953992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3564970872527060848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 572d5bffc2035144581ad23b1974b816, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FollowTarget: {fileID: 0}
+  RotationSpeed: 1
+  HorizontalDamping: 1
 --- !u!54 &3564970872527060854
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1017,6 +1035,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &794829287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3564970872527060848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb3121c3352ea224d83565296fc4ff97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 6342975071307236049, guid: 71a177a400276b54c9ae2e5b9cc84349, type: 3}
+  WeaponSocket: {fileID: 1292264822}
 --- !u!1 &3564972200294153644
 GameObject:
   m_ObjectHideFlags: 0

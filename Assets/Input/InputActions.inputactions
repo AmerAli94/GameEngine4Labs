@@ -27,7 +27,7 @@
                     "id": "5d876e0f-2f69-4856-b982-88d21f9ebc95",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=2)"
                 },
                 {
                     "name": "Run",
@@ -44,6 +44,14 @@
                     "expectedControlType": "Vector2",
                     "processors": "NormalizeVector2",
                     "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "Reload",
+                    "type": "Button",
+                    "id": "e50ca562-b388-4d53-8486-60abe06abf7b",
+                    "expectedControlType": "Button",
+                    "processors": "NormalizeVector2",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -105,7 +113,7 @@
                 {
                     "name": "",
                     "id": "222b62da-f893-4c69-a1eb-562dff70226e",
-                    "path": "",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -143,6 +151,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7788c5f4-716b-4b37-8134-74763551a022",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

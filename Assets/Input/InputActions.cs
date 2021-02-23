@@ -40,7 +40,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""id"": ""5d876e0f-2f69-4856-b982-88d21f9ebc95"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=2)""
                 },
                 {
                     ""name"": ""Run"",
@@ -57,6 +57,14 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": ""NormalizeVector2"",
                     ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""e50ca562-b388-4d53-8486-60abe06abf7b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": ""NormalizeVector2"",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -118,7 +126,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""222b62da-f893-4c69-a1eb-562dff70226e"",
-                    ""path"": """",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -158,6 +166,17 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7788c5f4-716b-4b37-8134-74763551a022"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -188,6 +207,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_ThirdPerson_Fire = m_ThirdPerson.FindAction("Fire", throwIfNotFound: true);
         m_ThirdPerson_Run = m_ThirdPerson.FindAction("Run", throwIfNotFound: true);
         m_ThirdPerson_Look = m_ThirdPerson.FindAction("Look", throwIfNotFound: true);
+        m_ThirdPerson_Reload = m_ThirdPerson.FindAction("Reload", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -242,6 +262,7 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_ThirdPerson_Fire;
     private readonly InputAction m_ThirdPerson_Run;
     private readonly InputAction m_ThirdPerson_Look;
+    private readonly InputAction m_ThirdPerson_Reload;
     public struct ThirdPersonActions
     {
         private @InputActions m_Wrapper;
@@ -251,6 +272,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @Fire => m_Wrapper.m_ThirdPerson_Fire;
         public InputAction @Run => m_Wrapper.m_ThirdPerson_Run;
         public InputAction @Look => m_Wrapper.m_ThirdPerson_Look;
+        public InputAction @Reload => m_Wrapper.m_ThirdPerson_Reload;
         public InputActionMap Get() { return m_Wrapper.m_ThirdPerson; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -275,6 +297,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Look.started -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnLook;
+                @Reload.started -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnReload;
+                @Reload.performed -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnReload;
+                @Reload.canceled -= m_Wrapper.m_ThirdPersonActionsCallbackInterface.OnReload;
             }
             m_Wrapper.m_ThirdPersonActionsCallbackInterface = instance;
             if (instance != null)
@@ -294,6 +319,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @Reload.started += instance.OnReload;
+                @Reload.performed += instance.OnReload;
+                @Reload.canceled += instance.OnReload;
             }
         }
     }
@@ -314,5 +342,6 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
 }
