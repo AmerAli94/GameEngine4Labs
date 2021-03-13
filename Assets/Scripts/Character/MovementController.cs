@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.AI;
+
 
 
 namespace Character
@@ -16,6 +18,8 @@ namespace Character
         private Animator PlayerAnimator;
         private PlayerController PlayerController;
         private Rigidbody PlayerRigidBody;
+        private Transform PlayerTransform;
+        private NavMeshAgent PlayerNavMesh;
 
         private Vector2 InputVector = Vector2.zero;
         private Vector3 MoveDirection = Vector3.zero;
@@ -35,6 +39,9 @@ namespace Character
             PlayerController = GetComponent<PlayerController>();
             PlayerAnimator = GetComponent<Animator>();
             PlayerRigidBody = GetComponent<Rigidbody>();
+            PlayerNavMesh = GetComponent<NavMeshAgent>();
+
+            PlayerTransform = transform;
         }
         private void Start()
         {
@@ -47,13 +54,15 @@ namespace Character
 
             if (!(InputVector.magnitude > 0)) MoveDirection = Vector3.zero;
 
-            MoveDirection = transform.forward * InputVector.y + transform.right * InputVector.x;
+            MoveDirection = PlayerTransform.forward * InputVector.y + PlayerTransform.right * InputVector.x;
 
             float currentSpeed = PlayerController.IsRunning ? RunSpeed : WalkSpeed;
 
             Vector3 movementDirection = MoveDirection * (currentSpeed * Time.deltaTime);
 
-            transform.position += movementDirection;
+            //transform.position += movementDirection;
+            // PlayerTransform.position += movementDirection;
+            PlayerNavMesh.Move(movementDirection);
         }
         public void OnMovement(InputValue value)
         {
@@ -75,15 +84,16 @@ namespace Character
         {
             PlayerController.IsJumping = true;
             PlayerAnimator.SetBool(IsJumpingHash, true);
-
+            PlayerNavMesh.enabled = false;
             PlayerRigidBody.AddForce((transform.up + MoveDirection) * JumpForce, ForceMode.Impulse);
         }
 
         private void OnCollisionEnter(Collision other)
         {
-            if (!other.gameObject.CompareTag("Ground")) return;
+            if (!other.gameObject.CompareTag("Ground") && !PlayerController.IsJumping) return;
             PlayerController.IsJumping = false;
             PlayerAnimator.SetBool(IsJumpingHash, false);
+            PlayerNavMesh.enabled = true;
         }
     }
 }

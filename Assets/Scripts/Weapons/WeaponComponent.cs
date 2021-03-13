@@ -4,9 +4,17 @@ using UnityEngine;
 
 namespace Weapons
 {
+    public enum WeaponType
+    {
+        None,
+        Machinegun,
+        Pistol
+    }
+
     [Serializable]
      public struct WeaponStats
     {
+        public WeaponType weapontype;
         public string Name;
         public float Dmage;
         public int BulletsInClip;
@@ -56,33 +64,32 @@ namespace Weapons
 
         protected virtual void FireWeapon()
         {
-
+            WeaponStats.BulletsInClip--;
         }
 
-        public void StartReloading()
+        public virtual void StartReloading()
         {
             Reloading = true;
             ReloadWeapon();
         }
-        public void StopReloading()
+        public virtual void StopReloading()
         {
             Reloading = false;
         }
 
-        public void ReloadWeapon()
+        protected virtual void ReloadWeapon()
         {
-            int bulletToReload = WeaponStats.TotalBulletsAvailabale - WeaponStats.Clipsize;
+            int bulletToReload = WeaponStats.Clipsize - WeaponStats.TotalBulletsAvailabale;
             if (bulletToReload < 0)
             {
-                Debug.Log("Reload - out of ammo");
-                WeaponStats.BulletsInClip += WeaponStats.TotalBulletsAvailabale;
-                WeaponStats.TotalBulletsAvailabale = 0;
+                WeaponStats.BulletsInClip += WeaponStats.Clipsize;
+                WeaponStats.TotalBulletsAvailabale -= WeaponStats.Clipsize;
             }
             else
             {
                 Debug.Log("Reload");
-                WeaponStats.BulletsInClip = WeaponStats.Clipsize;
-                WeaponStats.TotalBulletsAvailabale -= WeaponStats.Clipsize;
+                WeaponStats.BulletsInClip = WeaponStats.TotalBulletsAvailabale;
+                WeaponStats.TotalBulletsAvailabale -= 0;
             }
         }
 

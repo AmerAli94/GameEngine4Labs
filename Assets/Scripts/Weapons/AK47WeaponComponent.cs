@@ -10,15 +10,30 @@ namespace Weapons
         {
             ViewCamera = Camera.main;
         }
-        protected new void FireWeapon()
+        protected override void FireWeapon()
         {
-            Ray screenRay = ViewCamera.ScreenPointToRay(new Vector3(Crosshair.CurrentMousePosition.x, Crosshair.CurrentMousePosition.y, 0));
-
-            if (!Physics.Raycast(screenRay, out RaycastHit hit, WeaponStats.FireDistance, WeaponStats.WeaponHitLayer))
+            Debug.Log("Firing Weapon");
+            
+            if (WeaponStats.BulletsInClip > 0 && !Reloading && !WeaponHolder.Controller.IsJumping)
             {
-                return;
+                base.FireWeapon();
+
+                Ray screenRay = ViewCamera.ScreenPointToRay(new Vector3(Crosshair.CurrentMousePosition.x, Crosshair.CurrentMousePosition.y, 0));
+
+                if (Physics.Raycast(screenRay, out RaycastHit hit, WeaponStats.FireDistance, WeaponStats.WeaponHitLayer))
+                {
+                    Vector3 RayDirection = HitLocation.point - ViewCamera.transform.position;
+
+                    Debug.DrawRay(ViewCamera.transform.position, RayDirection * WeaponStats.FireDistance, Color.red);
+
+                    HitLocation = hit;
+                }
+
             }
-            HitLocation = hit;
+            else if(WeaponStats.BulletsInClip <= 0)
+            {
+                WeaponHolder.StartReloading();
+            }
         }
 
         private void OnDrawGizmos()

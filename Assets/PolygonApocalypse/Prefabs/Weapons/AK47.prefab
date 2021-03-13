@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponStats:
+    weapontype: 1
     Name: AK-47
     Dmage: 10
     BulletsInClip: 10
