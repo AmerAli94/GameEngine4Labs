@@ -14,6 +14,7 @@ namespace Character
         [SerializeField] private float WalkSpeed;
         [SerializeField] private float RunSpeed;
         [SerializeField] private float JumpForce;
+        [SerializeField] private float MoveDirectionBuffer = 2f;
 
         private Animator PlayerAnimator;
         private PlayerController PlayerController;
@@ -23,7 +24,7 @@ namespace Character
 
         private Vector2 InputVector = Vector2.zero;
         private Vector3 MoveDirection = Vector3.zero;
-
+        private Vector3 NextPositionCheck;
 
         //animator hashes
         private readonly int MovementXHash = Animator.StringToHash("MovementX");
@@ -36,34 +37,19 @@ namespace Character
 
         private void Awake()
         {
+            PlayerTransform = transform;
+
             PlayerController = GetComponent<PlayerController>();
             PlayerAnimator = GetComponent<Animator>();
             PlayerRigidBody = GetComponent<Rigidbody>();
             PlayerNavMesh = GetComponent<NavMeshAgent>();
 
-            PlayerTransform = transform;
         }
         private void Start()
         {
             Debug.Log("Start");
         }
 
-        private void Update()
-        {
-            if (PlayerController.IsJumping) return;
-
-            if (!(InputVector.magnitude > 0)) MoveDirection = Vector3.zero;
-
-            MoveDirection = PlayerTransform.forward * InputVector.y + PlayerTransform.right * InputVector.x;
-
-            float currentSpeed = PlayerController.IsRunning ? RunSpeed : WalkSpeed;
-
-            Vector3 movementDirection = MoveDirection * (currentSpeed * Time.deltaTime);
-
-            //transform.position += movementDirection;
-            // PlayerTransform.position += movementDirection;
-            PlayerNavMesh.Move(movementDirection);
-        }
         public void OnMovement(InputValue value)
         {
             InputVector = value.Get<Vector2>();
@@ -82,18 +68,40 @@ namespace Character
 
         public void OnJump(InputValue button)
         {
-            PlayerController.IsJumping = true;
-            PlayerAnimator.SetBool(IsJumpingHash, true);
+
+            if (PlayerController.IsJumping) return;
+
+            PlayerController.IsJumping = button.isPressed;
+            PlayerAnimator.SetBool(IsJumpingHash, button.isPressed);
+            PlayerRigidBody.AddForce((PlayerTransform.up + MoveDirection) * JumpForce, ForceMode.Impulse);
             PlayerNavMesh.enabled = false;
-            PlayerRigidBody.AddForce((transform.up + MoveDirection) * JumpForce, ForceMode.Impulse);
+        }
+
+
+        private void Update()
+        {
+            if (PlayerController.IsJumping) return;
+
+            MoveDirection = PlayerTransform.forward * InputVector.y + PlayerTransform.right * InputVector.x;
+
+            float currentSpeed = PlayerController.IsRunning ? RunSpeed : WalkSpeed;
+
+            Vector3 movementDirection = MoveDirection * (currentSpeed * Time.deltaTime);
+
+            NextPositionCheck = transform.position + MoveDirection * MoveDirectionBuffer;
+            if (NavMesh.SamplePosition(NextPositionCheck, out NavMeshHit hit, 1f, NavMesh.AllAreas))
+            {
+                transform.position += movementDirection;
+            }
         }
 
         private void OnCollisionEnter(Collision other)
         {
-            if (!other.gameObject.CompareTag("Ground") && !PlayerController.IsJumping) return;
+            if (!other.collider.CompareTag("Ground") || !PlayerController.IsJumping) return;
+            Debug.Log("Collided");
+
             PlayerController.IsJumping = false;
             PlayerAnimator.SetBool(IsJumpingHash, false);
-            PlayerNavMesh.enabled = true;
         }
     }
 }

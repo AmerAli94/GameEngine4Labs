@@ -32,7 +32,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""id"": ""aa30469a-ab90-406e-98cc-b00612e08d09"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": """"
                 },
                 {
                     ""name"": ""Fire"",
@@ -149,7 +149,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""1d99db93-0d22-4f1d-8379-9a95f0b38487"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
