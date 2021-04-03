@@ -36,12 +36,18 @@ public class ZombieComponent : MonoBehaviour
         FollowTarget = followTarget;
 
         ZombieIdleState idleState = new ZombieIdleState(this, stateMachine);
-
         stateMachine.AddState(ZombieStateType.Idle, idleState);
 
         ZombieFollowState followState = new ZombieFollowState(followTarget, this, stateMachine);
-
         stateMachine.AddState(ZombieStateType.Follow, followState);
+
+
+        ZombieAttackState attackState = new ZombieAttackState(followTarget, this, stateMachine);
+        stateMachine.AddState(ZombieStateType.Attack, attackState);
+
+        ZombieDeadState deadState = new ZombieDeadState(this, stateMachine);
+        stateMachine.AddState(ZombieStateType.Dead, deadState);
+
 
         stateMachine.Initialize(ZombieStateType.Follow);
      }

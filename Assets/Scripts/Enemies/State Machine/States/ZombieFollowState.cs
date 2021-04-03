@@ -32,13 +32,15 @@ public class ZombieFollowState : ZombieStates
     public override void update()
     {
         base.update();
-        OwnerZombie.zombieAnimator.SetFloat("MovementZ", OwnerZombie.zombieNavMesh.velocity.normalized.z);
+        OwnerZombie.zombieAnimator.SetFloat(MovementZhash, OwnerZombie.zombieNavMesh.velocity.normalized.z);
+        float distanceBetween = Vector3.Distance(OwnerZombie.transform.position, FollowTarget.transform.position);
 
-        if (Vector3.Distance(OwnerZombie.transform.position, FollowTarget.transform.position) < stopDistance)
+        if (distanceBetween < stopDistance)
         {
+            Debug.Log("attacking");
             StateMachine.ChangeState(ZombieStateType.Attack);
         }
 
-        
+
     }
 }
