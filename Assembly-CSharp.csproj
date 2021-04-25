@@ -57,24 +57,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scrips\UI\HealthInfoUI.cs" />
+    <Compile Include="Assets\Scrips\UI\PauseCanvas.cs" />
+    <Compile Include="Assets\Scrips\UI\GameUIController.cs" />
     <Compile Include="Assets\Scrips\Enemies\StateMachine\State.cs" />
     <Compile Include="Assets\Scrips\Enemies\StateMachine\ZombieStates\ZombieIdleState.cs" />
+    <Compile Include="Assets\Scrips\ScriptableObjects\WeaponScriptable.cs" />
     <Compile Include="Assets\Scrips\UI\MenuController.cs" />
     <Compile Include="Assets\Scrips\Weapons\WeaponComponent.cs" />
+    <Compile Include="Assets\Scrips\UI\PauseManager.cs" />
     <Compile Include="Assets\Scrips\Character\MovementComponent.cs" />
+    <Compile Include="Assets\Scrips\ScriptableObjects\EquipableScriptable.cs" />
     <Compile Include="Assets\Scrips\Character\WeaponHolder.cs" />
     <Compile Include="Assets\Scrips\Animator\AnimReloadScript.cs" />
     <Compile Include="Assets\Scrips\Events\AppEvents.cs" />
+    <Compile Include="Assets\Scrips\ScriptableObjects\ConsummableScript.cs" />
     <Compile Include="Assets\Scrips\Enemies\Zombies\ZombieComponent.cs" />
     <Compile Include="Assets\Scrips\Weapons\AK47Component.cs" />
+    <Compile Include="Assets\Scrips\UI\GameCanvas.cs" />
     <Compile Include="Assets\Scrips\UI\OptionsWidget.cs" />
     <Compile Include="Assets\Scrips\Enemies\SpawnerVolume.cs" />
+    <Compile Include="Assets\Scrips\ScriptableObjects\ItemScriptable.cs" />
     <Compile Include="Assets\Scrips\Character\CameraScript.cs" />
     <Compile Include="Assets\Scrips\Character\PlayerController.cs" />
     <Compile Include="Assets\Scrips\Parents\InputMonobehaviour.cs" />
     <Compile Include="Assets\Scrips\Enemies\ZombieSpawner.cs" />
     <Compile Include="Assets\Scrips\Character\UI\WeaponAmmoUI.cs" />
     <Compile Include="Assets\Scrips\Enemies\StateMachine\ZombieStates\ZombieDeathState.cs" />
+    <Compile Include="Assets\ItemPickupComponent.cs" />
     <Compile Include="Assets\Scrips\UI\SaveSlotWidget.cs" />
     <Compile Include="Assets\Scrips\Systems\Health\ZombieHealthComponent.cs" />
     <Compile Include="Assets\Scrips\Events\PlayerEvents.cs" />
@@ -303,6 +312,9 @@
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.9f1\Editor\Data\Managed\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.5\net35\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.9f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
