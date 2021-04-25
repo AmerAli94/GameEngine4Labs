@@ -19,7 +19,7 @@ public class MovementComponent : MonoBehaviour
 
     [SerializeField] private LayerMask JumpLayerMask;
     [SerializeField] private float JumpThreshold = 0.1f;
-    [SerializeField] private float JumpLandingCheckDelay = 0.1f;
+    ////[SerializeField] private float JumpLandingCheckDelay = 0.1f;
     [SerializeField] private float MoveDirectionBuffer = 10.0f;
 
     //components
