@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scrips\UI\HealthInfoUI.cs" />
+    <Compile Include="Assets\ItemSlotAmountWidget.cs" />
     <Compile Include="Assets\Scrips\UI\PauseCanvas.cs" />
     <Compile Include="Assets\Scrips\UI\GameUIController.cs" />
     <Compile Include="Assets\Scrips\Enemies\StateMachine\State.cs" />
@@ -64,10 +65,13 @@
     <Compile Include="Assets\Scrips\ScriptableObjects\WeaponScriptable.cs" />
     <Compile Include="Assets\Scrips\UI\MenuController.cs" />
     <Compile Include="Assets\Scrips\Weapons\WeaponComponent.cs" />
+    <Compile Include="Assets\IconSlot.cs" />
     <Compile Include="Assets\Scrips\UI\PauseManager.cs" />
+    <Compile Include="Assets\CategorySelectButton.cs" />
     <Compile Include="Assets\Scrips\Character\MovementComponent.cs" />
     <Compile Include="Assets\Scrips\ScriptableObjects\EquipableScriptable.cs" />
     <Compile Include="Assets\Scrips\Character\WeaponHolder.cs" />
+    <Compile Include="Assets\InvenotryWidget.cs" />
     <Compile Include="Assets\Scrips\Animator\AnimReloadScript.cs" />
     <Compile Include="Assets\Scrips\Events\AppEvents.cs" />
     <Compile Include="Assets\Scrips\ScriptableObjects\ConsummableScript.cs" />
@@ -83,7 +87,7 @@
     <Compile Include="Assets\Scrips\Enemies\ZombieSpawner.cs" />
     <Compile Include="Assets\Scrips\Character\UI\WeaponAmmoUI.cs" />
     <Compile Include="Assets\Scrips\Enemies\StateMachine\ZombieStates\ZombieDeathState.cs" />
-    <Compile Include="Assets\ItemPickupComponent.cs" />
+    <Compile Include="Assets\Scrips\Inventory\ItemPickupComponent.cs" />
     <Compile Include="Assets\Scrips\UI\SaveSlotWidget.cs" />
     <Compile Include="Assets\Scrips\Systems\Health\ZombieHealthComponent.cs" />
     <Compile Include="Assets\Scrips\Events\PlayerEvents.cs" />
@@ -93,12 +97,15 @@
     <Compile Include="Assets\Scrips\Systems\Health\HealthComponent.cs" />
     <Compile Include="Assets\Scrips\Enemies\StateMachine\ZombieStates\ZombieAttackState.cs" />
     <Compile Include="Assets\Scrips\Enemies\StateMachine\StateMachine.cs" />
+    <Compile Include="Assets\ItemDisplayPanel.cs" />
+    <Compile Include="Assets\ItemSlotEquippedWidget.cs" />
     <Compile Include="Assets\Scrips\Systems\Health\IDamagable.cs" />
     <Compile Include="Assets\Input\PlayerInputActions.cs" />
     <Compile Include="Assets\Scrips\Systems\Health\PlayerHealthComponent.cs" />
     <Compile Include="Assets\Scrips\Enemies\StateMachine\ZombieStates\ZombieFollowState.cs" />
     <Compile Include="Assets\Scrips\UI\MainMenuWidget.cs" />
     <Compile Include="Assets\Scrips\UI\LoadGameWidget.cs" />
+    <Compile Include="Assets\Scrips\Inventory\InventoryComponent.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

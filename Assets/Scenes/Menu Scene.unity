@@ -261,6 +261,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &665717583
 Canvas:
   m_ObjectHideFlags: 0
@@ -539,6 +540,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1879286008
@@ -860,22 +862,6 @@ PrefabInstance:
     - target: {fileID: 5846772918987425521, guid: 060d63c8c0e8bb441adcaea72f6b6443, type: 3}
       propertyPath: m_Name
       value: LoadGameMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 7671085508992881942, guid: 060d63c8c0e8bb441adcaea72f6b6443, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7671085508992881942, guid: 060d63c8c0e8bb441adcaea72f6b6443, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7671085508992881942, guid: 060d63c8c0e8bb441adcaea72f6b6443, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7671085508992881942, guid: 060d63c8c0e8bb441adcaea72f6b6443, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 060d63c8c0e8bb441adcaea72f6b6443, type: 3}
